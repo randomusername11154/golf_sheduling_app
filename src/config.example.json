@@ -1,0 +1,23 @@
+{
+  "_comment": "This file is created automatically the first time you open the app. You normally never edit it by hand - use the app's setup screen instead. It lives at ~/Library/Application Support/SagamoreTeeBot/config.json once installed.",
+
+  "memberNumber": "",
+  "password": "",
+
+  "targetTime": "8:10",
+  "numberOfPlayers": 2,
+
+  "bookSaturday": true,
+  "bookSunday": true,
+
+  "releaseHour": 7,
+  "releaseMinute": 0,
+
+  "sniperIntervalMs": 500,
+  "giveUpAfterMinutes": 15,
+
+  "loginUrl": "https://www.thesagamoreclub.com/web/pages/login",
+  "teeTimesUrl": "https://www.thesagamoreclub.com/web/pages/tee-times",
+
+  "headless": true
+}

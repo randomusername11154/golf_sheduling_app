@@ -1,0 +1,15 @@
+# Build output
+build/
+SagamoreTeeBot-*.zip
+
+# Dependencies (restored via npm install / build.sh)
+node_modules/
+
+# User data - NEVER commit (contains the portal password, logs, page dumps)
+config.json
+diagnostics/
+*.log
+
+# OS / editor cruft
+.DS_Store
+.omo/

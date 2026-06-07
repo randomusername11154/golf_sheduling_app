@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  REFERENCE TEMPLATE ONLY.
+
+  The app does NOT copy this file. setup.js generates the real plist at
+  runtime (so the absolute paths to the bundled node binary and booker.js
+  are correct for wherever the user installed the .app) and writes it to:
+      ~/Library/LaunchAgents/com.sagamore.teebot.plist
+
+  This file documents the shape of what setup.js produces. The __PLACEHOLDER__
+  tokens are filled in by setup.js. Times shown (6:55) assume a 7:00 release
+  with a 5-minute warm-up; setup.js computes them from the user's config.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.sagamore.teebot</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>__APP_RESOURCES__/node</string>
+    <string>__APP_RESOURCES__/app/booker.js</string>
+  </array>
+
+  <!-- launchd starts jobs with a minimal environment. Set PATH/HOME and
+       point Playwright at the bundled Chromium BEFORE node starts. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>HOME</key>
+    <string>__HOME__</string>
+    <key>PLAYWRIGHT_BROWSERS_PATH</key>
+    <string>__APP_RESOURCES__/browsers</string>
+    <key>PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD</key>
+    <string>1</string>
+  </dict>
+
+  <!-- Saturday = Weekday 6, Sunday = Weekday 0. Each day needs its own
+       dict; StartCalendarInterval does not accept ranges or lists.
+       setup.js emits only the days the user enabled. -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Weekday</key><integer>6</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>55</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key><integer>0</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>55</integer>
+    </dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>__HOME__/Library/Application Support/SagamoreTeeBot/launchd.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>__HOME__/Library/Application Support/SagamoreTeeBot/launchd.err.log</string>
+
+  <!-- Do not run on install; only fire on the scheduled days. -->
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

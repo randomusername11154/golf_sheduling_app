@@ -1,0 +1,8 @@
+# Shell scripts and macOS .command files MUST use LF line endings, or they
+# break when run on macOS (bash errors on carriage returns). Force LF
+# regardless of the committer's OS.
+*.sh        text eol=lf
+*.command   text eol=lf
+
+# Treat the bundled Word doc as binary so git never mangles it.
+*.docx      binary

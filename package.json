@@ -1,0 +1,14 @@
+{
+  "name": "sagamore-tee-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-contained macOS app that automatically books a Sagamore Club tee time every weekend.",
+  "main": "src/booker.js",
+  "scripts": {
+    "booker": "node src/booker.js",
+    "setup": "node src/setup.js"
+  },
+  "dependencies": {
+    "playwright-core": "1.60.0"
+  }
+}
